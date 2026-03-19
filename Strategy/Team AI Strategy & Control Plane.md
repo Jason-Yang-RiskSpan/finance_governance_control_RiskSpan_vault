@@ -1,10 +1,10 @@
 # Team AI Strategy & Control Plane Index
 
-This document summarizes the core vision and internal requirements shared by Dan and Pat for our AI agent ecosystem, specifically the development of an **Agent Control Plane** and our **Governance/Audit** standards.
+This document summarizes the core vision and internal requirements shared by Dan and Pat for our AI agent ecosystem, specifically the development of an **Agent Control Plan** and our **Governance/Audit** standards.
 
 ---
 
-## 🏛 1. The Agent Control Plane (Command Hub)
+## 🏛 1. The Agent Control Plan (Command Hub)
 The central component for managing AI agents and telemetry.
 - **Infrastructure:** Dedicated consulting repo, individual enterprise IDs, and managed backend.
 - **Governance:** 
