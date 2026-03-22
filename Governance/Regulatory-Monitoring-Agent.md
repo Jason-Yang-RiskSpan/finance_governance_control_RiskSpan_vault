@@ -29,6 +29,11 @@ The agent will monitor and scrape updates from the following key regulators:
 
 ---
 **Status:** [ ] Planning Phase | [ ] Beta Testing
+
+## Sources & References
+*   **MAS (Singapore):** [Monetary Authority of Singapore - AI & Data Analytics](https://www.mas.gov.sg/development/fintech/ai-and-data-analytics)
+*   **EU AI Act:** [EU AI Act Explorer / Official Text](https://artificialintelligenceact.eu/)
+*   **NIST AI RMF:** [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
 **Next Steps:**
 - [ ] Define the list of "Canonical" sources for the agent's monitoring.
 - [ ] Establish the review cycle for the AI committee.

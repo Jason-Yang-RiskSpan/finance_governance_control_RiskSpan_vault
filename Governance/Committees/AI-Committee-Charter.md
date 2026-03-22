@@ -34,6 +34,10 @@ The committee consists of a select group of key contributors:
 
 ---
 **Status:** [ ] Draft | [ ] Final Charter
+
+## Sources & References
+*   **Governance Best Practices:** [SR 11-7: Guidance on Model Risk Management (Section on Governance)](https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm)
+*   **NIST Govern Function:** [NIST AI RMF - Govern Function](https://www.nist.gov/itl/ai-risk-management-framework)
 **Next Steps:**
 - [ ] Formally invite members and schedule the "Kick-Off" meeting.
 - [ ] Establish the JIRA "AI Strategy" board for tracking committee decisions.

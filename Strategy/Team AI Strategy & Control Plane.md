@@ -39,3 +39,7 @@ Current and planned skills for our local cloud instance:
 ---
 **Key Contacts:** Dan, Pat, Jason, Honghua, Jungmo
 **Status:** In Development (Infrastructure Setup Phase)
+
+## Sources & References
+*   **Framework:** [NIST AI Risk Management Framework (AI RMF 1.0)](https://www.nist.gov/itl/ai-risk-management-framework)
+*   **Banking Guidance:** [SR 11-7: Guidance on Model Risk Management](https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm)

@@ -25,3 +25,7 @@ Use this checklist during the **Independent Model Validation** phase.
 
 ---
 **Status:** [ ] Draft | [ ] Final
+
+## Sources & References
+*   **NIST Framework:** [NIST AI Risk Management Framework (AI RMF 1.0)](https://www.nist.gov/itl/ai-risk-management-framework)
+*   **Banking Standard:** [SR 11-7: Guidance on Model Risk Management](https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm)

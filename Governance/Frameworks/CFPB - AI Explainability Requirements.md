@@ -19,3 +19,7 @@ The CFPB has issued circulars (2022-03 and 2023-03) clarifying that "the AI was 
 
 ---
 **Status:** [ ] To Review | [ ] In Compliance
+
+## Sources & References
+*   **CFPB Circular 2022-03:** [Adverse Action Notification Requirements (Complex Algorithms)](https://www.consumerfinance.gov/compliance/circulars/circular-2022-03-adverse-action-notification-requirements-in-connection-with-credit-decisions-based-on-complex-algorithms/)
+*   **CFPB Circular 2023-03:** [Adverse Action Notification Requirements (Sample Forms & Data Use)](https://www.consumerfinance.gov/compliance/circulars/consumer-financial-protection-circular-2023-03-adverse-action-notification-requirements-and-the-proper-use-of-the-cfpbs-sample-forms-provided-in-regulation-b/)

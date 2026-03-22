@@ -22,3 +22,7 @@
 
 ---
 **Status:** [ ] To Review | [ ] In Compliance
+
+## Sources & References
+*   **Official Guidance:** [SR 11-7: Guidance on Model Risk Management (Federal Reserve)](https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm)
+*   **OCC Equivalent:** [OCC Bulletin 2011-12: Sound Practices for Model Risk Management](https://www.occ.gov/news-issuances/bulletins/2011/bulletin-2011-12.html)

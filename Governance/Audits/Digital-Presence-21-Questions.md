@@ -54,6 +54,10 @@
 
 ---
 **Status:** [ ] Template | [ ] Active Audit
+
+## Sources & References
+*   **Reputation & Risk:** [NIST AI RMF - Measure and Manage Functions](https://www.nist.gov/itl/ai-risk-management-framework)
+*   **Industry Context:** [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
 **Next Steps:**
 - [ ] Finalize the [Company Name] placeholders with your actual company name.
 - [ ] Schedule the first audit for [Next Date].

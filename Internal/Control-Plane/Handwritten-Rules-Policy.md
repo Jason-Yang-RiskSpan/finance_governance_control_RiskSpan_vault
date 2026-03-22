@@ -29,6 +29,10 @@ Our AI agents are built to provide **Accountability** and **Assurance** to our c
 
 ---
 **Next Actions:**
+
+## Sources & References
+*   **Policy Framework:** [NIST AI RMF - Govern Function](https://www.nist.gov/itl/ai-risk-management-framework)
+*   **Responsible AI:** [Microsoft Responsible AI Standard](https://www.microsoft.com/en-us/ai/responsible-ai)
 - [ ] Finalize the "RS Consulting" infrastructure policy.
 - [ ] Review the "Code Repository" access permissions with Pat.
 - [ ] Integrate JIRA / Azure ticket automation protocols.

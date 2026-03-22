@@ -25,6 +25,10 @@ This workflow runs after every major client meeting or internal pre-discovery se
 
 ---
 **Status:** [ ] Draft | [ ] Beta Testing
+
+## Sources & References
+*   **AI Policy:** [NIST AI RMF - Manage Function](https://www.nist.gov/itl/ai-risk-management-framework)
+*   **Data Privacy:** [GDPR / CCPA Compliance for AI Transcripts](https://www.nist.gov/privacy-framework)
 **Next Steps:**
 - [ ] Connect this workflow to the JIRA automation loop.
 - [ ] Define the "Policy Library" for the agent to use as a baseline.

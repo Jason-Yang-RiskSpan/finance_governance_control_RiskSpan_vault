@@ -33,6 +33,10 @@
 
 ---
 **Status:** [ ] Draft | [ ] Final Report
+
+## Sources & References
+*   **Reporting Standards:** [NIST AI RMF Playbook (Measure/Govern)](https://airc.nist.gov/AI_RMF_Knowledge_Base/Playbook)
+*   **Model Monitoring:** [SR 11-7: Guidance on Model Risk Management (Validation & Monitoring)](https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm)
 **Next Steps:**
 - [ ] Connect the Reporting Template to the Agent Control Plane's telemetry dashboard.
 - [ ] Finalize the 21-question set for the Digital Presence Audit.

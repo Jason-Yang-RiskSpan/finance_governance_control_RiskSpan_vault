@@ -44,6 +44,12 @@ The **Agent Control Plane** (or "Command Hub") is the centralized infrastructure
 
 ---
 **Next Steps:**
+
+## Sources & References
+*   **Guardrails:** [Amazon Bedrock Guardrails](https://aws.amazon.com/bedrock/guardrails/)
+*   **Lineage:** [Databricks Unity Catalog](https://www.databricks.com/product/unity-catalog)
+*   **Constitutional AI:** [Anthropic: Constitutional AI: Harmlessness from AI Feedback](https://www.anthropic.com/index/constitutional-ai-harmlessness-from-ai-feedback)
+*   **NIST AI RMF:** [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
 - [ ] Define RBAC schema for enterprise IDs.
 - [ ] Initialize the "Observability Agent" logic.
 - [ ] Link backend instance logs to "RS Verify" reporting module.

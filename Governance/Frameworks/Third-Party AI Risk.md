@@ -19,3 +19,7 @@ A bank remains responsible for the safety and soundness of any AI model or data 
 
 ---
 **Status:** [ ] To Review | [ ] In Compliance
+
+## Sources & References
+*   **Interagency Guidance (2023):** [Interagency Guidance on Third-Party Relationships: Risk Management (SR 23-4)](https://www.federalreserve.gov/supervisionreg/srletters/SR2304.htm)
+*   **Federal Register:** [88 FR 37920 - Third-Party Relationships Risk Management Guidance](https://www.federalregister.gov/documents/2023/06/09/2023-12340/interagency-guidance-on-third-party-relationships-risk-management)

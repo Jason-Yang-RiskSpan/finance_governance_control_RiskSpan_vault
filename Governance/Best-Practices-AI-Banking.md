@@ -25,3 +25,8 @@ This document provides high-level "Best Practices" for implementing AI agents wi
 ---
 **Status:** [ ] Draft | [ ] Approved by AI Committee
 **Last Updated:** March 20, 2026
+
+## Sources & References
+*   **NIST Framework:** [NIST AI Risk Management Framework (AI RMF 1.0)](https://www.nist.gov/itl/ai-risk-management-framework)
+*   **Banking Standard:** [SR 11-7: Guidance on Model Risk Management](https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm)
+*   **Explainability:** [CFPB Circular 2022-03: Adverse Action Notification Requirements](https://www.consumerfinance.gov/compliance/circulars/circular-2022-03-adverse-action-notification-requirements-in-connection-with-credit-decisions-based-on-complex-algorithms/)
