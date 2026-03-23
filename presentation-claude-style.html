@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>RiskSpan AI Agent Control Plane & Governance</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/simple.min.css">
+
+		<style>
+			:root {
+				--claude-primary: #6B4FBB; /* Claude purple */
+				--claude-secondary: #8B7AB8; /* Lighter purple */
+				--claude-accent: #9B8DC7; /* Soft purple */
+				--claude-text: #2D2D2D; /* Warm dark gray */
+				--claude-light: #F7F5FB; /* Very light purple background */
+				--claude-orange: #E87B35; /* Warm accent */
+				--r-main-font-size: 32px;
+			}
+
+			body {
+				background: linear-gradient(135deg, #F7F5FB 0%, #FFFFFF 100%);
+			}
+
+			.reveal {
+				font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+				color: var(--claude-text);
+			}
+
+			.reveal h1 {
+				color: var(--claude-primary);
+				font-weight: 700;
+				font-size: 2.5em;
+				text-transform: none;
+				margin-bottom: 0.5em;
+				line-height: 1.2;
+			}
+
+			.reveal h2 {
+				color: var(--claude-primary);
+				font-weight: 600;
+				font-size: 1.8em;
+				text-transform: none;
+				margin-bottom: 0.8em;
+			}
+
+			.reveal h3 {
+				color: var(--claude-secondary);
+				font-weight: 600;
+				font-size: 1.3em;
+				text-transform: none;
+			}
+
+			.reveal section {
+				background: rgba(255, 255, 255, 0.95);
+				border-radius: 16px;
+				padding: 40px;
+				box-shadow: 0 8px 32px rgba(107, 79, 187, 0.1);
+			}
+
+			.reveal .slides section {
+				text-align: left;
+			}
+
+			.reveal ul, .reveal ol {
+				margin: 0;
+				padding-left: 1.5em;
+			}
+
+			.reveal li {
+				margin-bottom: 0.7em;
+				line-height: 1.6;
+				font-size: 0.85em;
+			}
+
+			.reveal strong {
+				color: var(--claude-primary);
+				font-weight: 600;
+			}
+
+			.logo-top-left {
+				position: fixed;
+				top: 20px;
+				left: 20px;
+				z-index: 1000;
+				width: 150px;
+			}
+
+			.footer-info {
+				position: fixed;
+				bottom: 15px;
+				right: 20px;
+				font-size: 0.5em;
+				color: #999;
+				z-index: 1000;
+			}
+
+			/* Card-style content blocks */
+			.card {
+				background: white;
+				border-radius: 12px;
+				padding: 20px;
+				margin: 15px 0;
+				box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+				border-left: 4px solid var(--claude-primary);
+			}
+
+			.card h3 {
+				margin-top: 0;
+				font-size: 1.1em;
+			}
+
+			/* Two column layout */
+			.two-column {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 30px;
+				margin: 20px 0;
+			}
+
+			/* Three column layout */
+			.three-column {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 20px;
+				margin: 20px 0;
+			}
+
+			/* Metric boxes */
+			.metric-box {
+				background: linear-gradient(135deg, var(--claude-primary) 0%, var(--claude-secondary) 100%);
+				color: white;
+				border-radius: 12px;
+				padding: 20px;
+				text-align: center;
+				box-shadow: 0 4px 16px rgba(107, 79, 187, 0.2);
+			}
+
+			.metric-box .number {
+				font-size: 2.5em;
+				font-weight: 700;
+				display: block;
+				margin-bottom: 5px;
+			}
+
+			.metric-box .label {
+				font-size: 0.9em;
+				opacity: 0.9;
+			}
+
+			/* Badge style */
+			.badge {
+				display: inline-block;
+				background: var(--claude-light);
+				color: var(--claude-primary);
+				padding: 6px 16px;
+				border-radius: 20px;
+				font-size: 0.75em;
+				font-weight: 600;
+				margin: 5px 5px 5px 0;
+				border: 2px solid var(--claude-accent);
+			}
+
+			.badge.orange {
+				background: #FFF4ED;
+				color: var(--claude-orange);
+				border-color: var(--claude-orange);
+			}
+
+			/* Status indicators */
+			.status {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				font-size: 0.85em;
+			}
+
+			.status::before {
+				content: "";
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				display: inline-block;
+			}
+
+			.status.active::before {
+				background: #4CAF50;
+				box-shadow: 0 0 8px #4CAF50;
+			}
+
+			.status.planned::before {
+				background: #FF9800;
+			}
+
+			.status.beta::before {
+				background: #2196F3;
+			}
+
+			/* Highlight box */
+			.highlight-box {
+				background: linear-gradient(135deg, #FFF4ED 0%, #FFE9D9 100%);
+				border: 2px solid var(--claude-orange);
+				border-radius: 12px;
+				padding: 20px;
+				margin: 20px 0;
+				font-size: 0.95em;
+			}
+
+			/* Icon list */
+			.icon-list li::marker {
+				content: "▶ ";
+				color: var(--claude-primary);
+			}
+
+			/* Center aligned sections (for title and agenda) */
+			.reveal .center-content {
+				text-align: center;
+			}
+
+			/* Slide number styling */
+			.reveal .slide-number {
+				background: var(--claude-primary);
+				color: white;
+				border-radius: 8px;
+				padding: 8px 12px;
+				font-weight: 600;
+			}
+
+			/* Progress bar */
+			.reveal .progress {
+				background: rgba(107, 79, 187, 0.1);
+				height: 4px;
+			}
+
+			.reveal .progress span {
+				background: var(--claude-primary);
+			}
+		</style>
+	</head>
+	<body>
+		<img src="RiskSpan Logo/Riskspan logo.png" class="logo-top-left" alt="RiskSpan Logo">
+		<div class="footer-info">RiskSpan AI Governance | March 2026</div>
+
+		<div class="reveal">
+			<div class="slides">
+
+				<!-- Slide 1: Title -->
+				<section class="center-content">
+					<h1>AI Agent Control Plane<br>& Governance Framework</h1>
+					<p style="font-size: 1.2em; color: var(--claude-secondary); margin: 30px 0;">
+						Building <strong style="color: var(--claude-orange);">Accountability</strong> and <strong style="color: var(--claude-orange);">Assurance</strong> into AI Deployment
+					</p>
+					<div style="margin-top: 50px;">
+						<span class="badge">Internal Strategy</span>
+						<span class="badge">RiskSpan Consulting</span>
+						<span class="badge orange">March 2026</span>
+					</div>
+				</section>
+
+				<!-- Slide 2: The Problem We're Solving -->
+				<section>
+					<h2>The Challenge</h2>
+					<div class="highlight-box">
+						<strong>AI deployment in financial services faces critical barriers:</strong>
+					</div>
+					<div class="two-column">
+						<div class="card">
+							<h3>🏦 Regulatory Uncertainty</h3>
+							<p>Banks need SR 11-7 compliance but lack frameworks for AI governance</p>
+						</div>
+						<div class="card">
+							<h3>🔍 Lack of Transparency</h3>
+							<p>"Black box" AI makes audit trails and reversibility nearly impossible</p>
+						</div>
+					</div>
+					<div class="two-column">
+						<div class="card">
+							<h3>⚠️ Risk Concerns</h3>
+							<p>Model drift, bias, and PII leakage threaten compliance and reputation</p>
+						</div>
+						<div class="card">
+							<h3>🎯 Client Demands</h3>
+							<p>Clients want AI benefits but require institutional-grade accountability</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- Slide 3: Our Solution -->
+				<section>
+					<h2>Our Solution: The Control Plane</h2>
+					<p style="font-size: 1.1em; margin-bottom: 30px;">
+						A comprehensive governance infrastructure that makes every AI agent <strong>auditable, reversible, and compliant by design</strong>.
+					</p>
+
+					<div class="three-column" style="margin-top: 30px;">
+						<div class="metric-box">
+							<span class="number">100%</span>
+							<span class="label">Audit Coverage</span>
+						</div>
+						<div class="metric-box">
+							<span class="number">8</span>
+							<span class="label">Production Agents</span>
+						</div>
+						<div class="metric-box">
+							<span class="number">0</span>
+							<span class="label">Compliance Violations</span>
+						</div>
+					</div>
+
+					<div class="card" style="margin-top: 30px;">
+						<h3>Key Insight</h3>
+						<p>We turn AI governance from a <strong>barrier into a competitive advantage</strong> — positioning RiskSpan as the only vendor with institutional-grade AI accountability.</p>
+					</div>
+				</section>
+
+				<!-- Slide 4: Architecture Overview -->
+				<section>
+					<h2>🏛️ Control Plane Architecture</h2>
+					<div class="two-column">
+						<div>
+							<div class="card">
+								<h3>Infrastructure Layer</h3>
+								<ul class="icon-list" style="font-size: 0.9em; margin: 10px 0;">
+									<li>Enterprise IDs for every agent</li>
+									<li>Managed cloud backend</li>
+									<li>Canonical data hierarchy</li>
+									<li>RBAC enforcement</li>
+								</ul>
+							</div>
+							<div class="card">
+								<h3>Governance Layer</h3>
+								<ul class="icon-list" style="font-size: 0.9em; margin: 10px 0;">
+									<li>Real-time PII masking</li>
+									<li>Constitutional AI policies</li>
+									<li>Human-in-the-Loop gates</li>
+									<li>Complete audit trails</li>
+								</ul>
+							</div>
+						</div>
+						<div>
+							<div class="card">
+								<h3>Observability Layer</h3>
+								<ul class="icon-list" style="font-size: 0.9em; margin: 10px 0;">
+									<li>Model drift detection</li>
+									<li>Real-time telemetry</li>
+									<li>Cost optimization alerts</li>
+									<li>Performance monitoring</li>
+								</ul>
+							</div>
+							<div class="card">
+								<h3>Compliance Layer</h3>
+								<ul class="icon-list" style="font-size: 0.9em; margin: 10px 0;">
+									<li>SR 11-7 validation</li>
+									<li>CFPB explainability</li>
+									<li>Monthly RS Verify reports</li>
+									<li>Regulatory monitoring</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Slide 5: The Four Core Rules -->
+				<section>
+					<h2>⚖️ The Four Core Rules</h2>
+					<p style="margin-bottom: 25px;">Every agent must comply before production deployment:</p>
+
+					<div class="card">
+						<h3>1. Infrastructure & Control Plane</h3>
+						<p>Enterprise-level instances, managed repository, complete telemetry persistence</p>
+					</div>
+
+					<div class="card">
+						<h3>2. Governance & Guardrails</h3>
+						<p>RBAC, PII masking, Constitutional AI, HITL for high-risk actions, documented sign-off</p>
+					</div>
+
+					<div class="card">
+						<h3>3. Improvement & Iteration</h3>
+						<p>Regression testing, JIRA integration, monthly RS Verify reviews, drift monitoring</p>
+					</div>
+
+					<div class="card">
+						<h3>4. Digital Reputation</h3>
+						<p>30-day LLM audits with 21-question rubric, graded A/B/C/D</p>
+					</div>
+				</section>
+
+				<!-- Slide 6: Industry Alignments -->
+				<section>
+					<h2>🔧 Industry-Standard Technology</h2>
+					<p style="margin-bottom: 25px;">We leverage best-in-class platforms instead of reinventing:</p>
+
+					<div class="two-column">
+						<div class="card">
+							<h3>AWS Bedrock Guardrails</h3>
+							<p>Real-time PII masking and content filtering before data reaches LLMs</p>
+						</div>
+						<div class="card">
+							<h3>Microsoft Purview</h3>
+							<p>Automated data labeling and classification — agents inherit permissions</p>
+						</div>
+					</div>
+					<div class="two-column">
+						<div class="card">
+							<h3>Anthropic Constitutional AI</h3>
+							<p>Hard-coded policy boundaries that every agent checks before responding</p>
+						</div>
+						<div class="card">
+							<h3>Databricks Unity Catalog</h3>
+							<p>Complete data lineage — trace any output back to source documents</p>
+						</div>
+					</div>
+
+					<div class="highlight-box" style="margin-top: 25px;">
+						<strong>Strategic Benefit:</strong> Enterprise-proven technology + RiskSpan's financial services expertise = Faster time-to-market with lower risk
+					</div>
+				</section>
+
+				<!-- Slide 7: Agent Skills Library -->
+				<section>
+					<h2>🤖 AI Agent Skills Library</h2>
+					<p style="margin-bottom: 20px;">10 specialized agents automating the consulting lifecycle:</p>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 0.8em;">
+						<div class="card">
+							<strong style="color: var(--claude-primary);">Pre-Discovery</strong>
+							<div style="margin-top: 10px;">
+								<span class="status planned">Market Research</span><br>
+								<span class="status planned">Meeting Scripts</span>
+							</div>
+						</div>
+						<div class="card">
+							<strong style="color: var(--claude-primary);">Post-Meeting</strong>
+							<div style="margin-top: 10px;">
+								<span class="status beta">Transcript Analyzer</span><br>
+								<span class="status planned">Follow-Up Generator</span>
+							</div>
+						</div>
+						<div class="card">
+							<strong style="color: var(--claude-primary);">Compliance</strong>
+							<div style="margin-top: 10px;">
+								<span class="status planned">Regulatory Scanner</span><br>
+								<span class="status planned">Model Validator</span>
+							</div>
+						</div>
+						<div class="card">
+							<strong style="color: var(--claude-primary);">Operations</strong>
+							<div style="margin-top: 10px;">
+								<span class="status planned">Observability Agent</span><br>
+								<span class="status planned">JIRA Integration</span>
+							</div>
+						</div>
+						<div class="card">
+							<strong style="color: var(--claude-primary);">Reporting</strong>
+							<div style="margin-top: 10px;">
+								<span class="status planned">RS Verify Generator</span><br>
+								<span class="status planned">Digital Presence Audit</span>
+							</div>
+						</div>
+						<div class="card">
+							<strong style="color: var(--claude-primary);">Impact</strong>
+							<div style="margin-top: 10px; font-size: 0.95em;">
+								80-95% time savings<br>
+								100% audit compliance
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Slide 8: RS Verify - Monthly Reporting -->
+				<section>
+					<h2>📊 RS Verify: Monthly Transparency Report</h2>
+					<p style="margin-bottom: 25px;">Executive and technical reporting covering four dimensions:</p>
+
+					<div class="card">
+						<h3>1. Infrastructure & Performance</h3>
+						<p>Token usage trends, latency metrics, cost optimization opportunities</p>
+					</div>
+
+					<div class="card">
+						<h3>2. Model Integrity</h3>
+						<p>Drift detection, guardrail violations, permissions audits</p>
+					</div>
+
+					<div class="card">
+						<h3>3. Digital Presence Audit</h3>
+						<p>Test 5 LLMs (ChatGPT, Claude, Gemini, Llama, Grok) with 21 questions — Grade A/B/C/D</p>
+					</div>
+
+					<div class="card">
+						<h3>4. Compliance Assurance</h3>
+						<p>Regression test results, audit log integrity, improvement ticket tracking</p>
+					</div>
+
+					<div class="highlight-box" style="margin-top: 20px;">
+						<strong>Unique Differentiator:</strong> No other vendor provides this level of transparency and accountability
+					</div>
+				</section>
+
+				<!-- Slide 9: Regulatory Compliance -->
+				<section>
+					<h2>🏛️ Regulatory Compliance Framework</h2>
+					<p style="margin-bottom: 25px;">Aligned with global banking standards:</p>
+
+					<div class="two-column">
+						<div class="card">
+							<h3>SR 11-7 (Fed/OCC)</h3>
+							<p><strong>The "Gold Standard"</strong> for model risk management in banking</p>
+							<ul style="font-size: 0.9em; margin-top: 10px;">
+								<li>Three pillars: Development, Validation, Governance</li>
+								<li>Board accountability required</li>
+								<li>Complete model inventory</li>
+							</ul>
+						</div>
+						<div class="card">
+							<h3>CFPB Explainability</h3>
+							<p><strong>Adverse Action Requirements</strong></p>
+							<ul style="font-size: 0.9em; margin-top: 10px;">
+								<li>"Too complex" is NOT a valid defense</li>
+								<li>Specific, accurate reasons required</li>
+								<li>Anti-bias monitoring mandatory</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="card">
+						<h3>Global Regulatory Monitoring</h3>
+						<p>Automated scanning of MAS (Singapore), FSS (Korea), EU AI Act, US regulators</p>
+						<p style="font-size: 0.9em; margin-top: 10px;"><strong>Output:</strong> Weekly Regulatory Pulse + Monthly compliance briefs</p>
+					</div>
+				</section>
+
+				<!-- Slide 10: Client Value Proposition -->
+				<section>
+					<h2>🎯 Why This Matters to Clients</h2>
+					<p style="margin-bottom: 25px;">Six unique differentiators:</p>
+
+					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 0.85em;">
+						<div class="card">
+							<h3>1. Transparency</h3>
+							<p>Every action logged, auditable, reversible — full reasoning chain captured</p>
+						</div>
+						<div class="card">
+							<h3>2. Enterprise Governance</h3>
+							<p>Multi-layer guardrails with Constitutional AI — not just prompts</p>
+						</div>
+						<div class="card">
+							<h3>3. Regulatory Alignment</h3>
+							<p>Built-in compliance with SR 11-7, CFPB, and global standards</p>
+						</div>
+						<div class="card">
+							<h3>4. Continuous Monitoring</h3>
+							<p>Monthly RS Verify + 30-day digital presence audits</p>
+						</div>
+						<div class="card">
+							<h3>5. End-to-End Automation</h3>
+							<p>Workflow automation with appropriate human oversight</p>
+						</div>
+						<div class="card">
+							<h3>6. Institutional Controls</h3>
+							<p>Individual IDs, RBAC, complete data lineage tracking</p>
+						</div>
+					</div>
+
+					<div class="highlight-box" style="margin-top: 25px;">
+						<strong>Bottom Line:</strong> We're not selling AI tools — we're selling <strong>assurance</strong> that AI can be deployed safely in regulated environments
+					</div>
+				</section>
+
+				<!-- Slide 11: Implementation Roadmap -->
+				<section>
+					<h2>🗺️ Implementation Roadmap</h2>
+
+					<div class="card">
+						<h3>Phase 1: Foundation (Q2 2026) — Critical Infrastructure</h3>
+						<ul style="font-size: 0.9em;">
+							<li>Observability Agent (deployment transparency)</li>
+							<li>JIRA Improvement Loop (automation)</li>
+							<li>Model Validation Orchestrator (SR 11-7 compliance)</li>
+						</ul>
+					</div>
+
+					<div class="card">
+						<h3>Phase 2: Core Workflows (Q2-Q3 2026) — Meeting Lifecycle</h3>
+						<ul style="font-size: 0.9em;">
+							<li>Transcript Analyzer (beta → production)</li>
+							<li>Follow-Up Generator</li>
+							<li>Market Research Agent</li>
+						</ul>
+					</div>
+
+					<div class="card">
+						<h3>Phase 3: Reporting & Compliance (Q3 2026)</h3>
+						<ul style="font-size: 0.9em;">
+							<li>RS Verify Monthly Report Generator</li>
+							<li>Regulatory Monitoring Scanner</li>
+							<li>Digital Presence Audit</li>
+						</ul>
+					</div>
+
+					<div class="card">
+						<h3>Phase 4: Enhancement (Q4 2026)</h3>
+						<ul style="font-size: 0.9em;">
+							<li>Meeting Script Generator, Compliance Audit, Risk Assessment</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- Slide 12: Team & Governance -->
+				<section>
+					<h2>👥 Team Structure & Governance</h2>
+
+					<div class="two-column">
+						<div class="card">
+							<h3>Core Team</h3>
+							<ul style="font-size: 0.9em;">
+								<li><strong>Dan Kim & Pat:</strong> Strategic Oversight & Infrastructure</li>
+								<li><strong>Jason:</strong> Strategy & Observability Lead</li>
+								<li><strong>Honghua & Jungmo:</strong> Technical Implementation</li>
+							</ul>
+						</div>
+						<div class="card">
+							<h3>AI Committee</h3>
+							<ul style="font-size: 0.9em;">
+								<li>Agent approval & sign-off</li>
+								<li>Monthly policy review</li>
+								<li>Use case sharing</li>
+								<li>Risk management oversight</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="card" style="margin-top: 20px;">
+						<h3>Decision Framework</h3>
+						<p style="font-size: 0.9em;">
+							<strong>No agent reaches production without:</strong> Independent validation, Board approval, Complete regression suite, Documented guardrails, AI Committee sign-off
+						</p>
+					</div>
+
+					<div class="highlight-box" style="margin-top: 20px;">
+						<strong>Key Principle:</strong> Cross-functional oversight ensures no single team can bypass governance
+					</div>
+				</section>
+
+				<!-- Slide 13: Current Status -->
+				<section>
+					<h2>📈 Current Status</h2>
+
+					<div class="three-column" style="margin-bottom: 30px;">
+						<div class="metric-box">
+							<span class="number">10</span>
+							<span class="label">Skills Defined</span>
+						</div>
+						<div class="metric-box">
+							<span class="number">1</span>
+							<span class="label">In Beta Testing</span>
+						</div>
+						<div class="metric-box">
+							<span class="number">Q2</span>
+							<span class="label">Phase 1 Target</span>
+						</div>
+					</div>
+
+					<div class="card">
+						<h3>Infrastructure Setup Phase (Current)</h3>
+						<ul style="font-size: 0.9em;">
+							<li>Building out Agent Control Plane infrastructure</li>
+							<li>Finalizing JIRA integration loop</li>
+							<li>Expanding LLM audit to include Grok and Mistral</li>
+							<li>Establishing Observability Agent protocols</li>
+							<li>Defining RBAC schema for enterprise IDs</li>
+						</ul>
+					</div>
+
+					<div class="card" style="margin-top: 20px;">
+						<h3>Next Milestones</h3>
+						<ul style="font-size: 0.9em;">
+							<li><strong>Week 1:</strong> AI Committee kick-off meeting & charter finalization</li>
+							<li><strong>Week 2-3:</strong> Complete Control Plane RBAC schema</li>
+							<li><strong>Week 4-6:</strong> Launch Observability Agent beta</li>
+							<li><strong>Month 2:</strong> First RS Verify monthly report cycle</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- Slide 14: Competitive Advantage -->
+				<section>
+					<h2>🏆 Our Competitive Moat</h2>
+					<p style="margin-bottom: 25px;">Why competitors can't easily replicate this:</p>
+
+					<div class="card">
+						<h3>1. Deep Financial Services Expertise</h3>
+						<p>Understanding SR 11-7, CFPB requirements, and banking operations — not just AI</p>
+					</div>
+
+					<div class="card">
+						<h3>2. Built-In Governance from Day One</h3>
+						<p>Not retrofitting compliance onto existing AI — governance is the architecture</p>
+					</div>
+
+					<div class="card">
+						<h3>3. Institutional-Grade Controls</h3>
+						<p>Individual IDs, RBAC, complete audit trails, data lineage — not enterprise wrappers on consumer AI</p>
+					</div>
+
+					<div class="card">
+						<h3>4. Transparency as Product</h3>
+						<p>RS Verify monthly reports and digital presence audits provide ongoing assurance</p>
+					</div>
+
+					<div class="highlight-box" style="margin-top: 25px;">
+						<strong>The Pitch:</strong> "Every other vendor says 'trust our AI.' We say 'verify our AI' — and give you the tools to do it."
+					</div>
+				</section>
+
+				<!-- Slide 15: Call to Action -->
+				<section>
+					<h2>✅ Immediate Next Steps</h2>
+
+					<div class="card">
+						<h3>This Week</h3>
+						<ul style="font-size: 0.95em;">
+							<li><strong>Approve</strong> the Control Plane architecture and governance framework</li>
+							<li><strong>Finalize</strong> AI Committee charter and schedule kick-off meeting</li>
+							<li><strong>Assign</strong> resources for Phase 1 implementation (Q2 2026)</li>
+						</ul>
+					</div>
+
+					<div class="card">
+						<h3>This Month</h3>
+						<ul style="font-size: 0.95em;">
+							<li><strong>Complete</strong> RBAC schema and enterprise ID allocation</li>
+							<li><strong>Launch</strong> Observability Agent beta</li>
+							<li><strong>Begin</strong> first RS Verify report cycle</li>
+						</ul>
+					</div>
+
+					<div class="card">
+						<h3>This Quarter (Q2 2026)</h3>
+						<ul style="font-size: 0.95em;">
+							<li><strong>Deploy</strong> Phase 1 agents (Observability, JIRA, Validation)</li>
+							<li><strong>Promote</strong> Transcript Analyzer to production</li>
+							<li><strong>Prepare</strong> client-facing materials highlighting governance capabilities</li>
+						</ul>
+					</div>
+
+					<div class="highlight-box" style="margin-top: 30px; text-align: center; font-size: 1.1em;">
+						<strong style="color: var(--claude-primary);">Innovation Window: OPEN</strong>
+					</div>
+				</section>
+
+				<!-- Slide 16: Q&A -->
+				<section class="center-content">
+					<h1>Questions & Discussion</h1>
+					<p style="font-size: 1.2em; color: var(--claude-secondary); margin: 40px 0;">
+						Building the future of <strong style="color: var(--claude-primary);">accountable</strong> and <strong style="color: var(--claude-primary);">assured</strong> AI in financial services
+					</p>
+					<div style="margin-top: 60px;">
+						<div class="badge">Thank You</div>
+					</div>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				center: false,
+				transition: 'fade',
+				slideNumber: 'c/t',
+				progress: true,
+				controls: true,
+				controlsLayout: 'bottom-right',
+				width: 1280,
+				height: 720,
+				margin: 0.1
+			});
+		</script>
+	</body>
+</html>

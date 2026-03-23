@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>RiskSpan AI Agent Control Plane & Governance</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+
+		<style>
+			:root {
+				--r-main-font-size: 28px;
+				--warm-orange: #D2691E; /* Warm chocolate orange */
+				--warm-red: #CD5C5C; /* Warm indian red */
+				--warm-gold: #DAA520; /* Goldenrod */
+				--warm-brown: #8B4513; /* Saddle brown */
+			}
+			.reveal {
+				color: #4A4A4A; /* Warm dark gray for body text */
+			}
+			.reveal h1, .reveal h2, .reveal h3 {
+				color: var(--warm-orange);
+				text-transform: none;
+			}
+			.reveal h1 {
+				color: var(--warm-brown);
+			}
+			.logo-top-left {
+				position: fixed;
+				top: 20px;
+				left: 20px;
+				z-index: 1000;
+				width: 150px;
+			}
+			.footer-info {
+				position: fixed;
+				bottom: 20px;
+				right: 20px;
+				font-size: 0.5em;
+				color: #888;
+				z-index: 1000;
+			}
+			.reveal section ul {
+				margin-top: 20px;
+			}
+			.reveal section li {
+				margin-bottom: 10px;
+				font-size: 0.85em;
+			}
+			.highlight {
+				color: var(--warm-red);
+				font-weight: bold;
+			}
+			.two-column {
+				display: flex;
+				justify-content: space-between;
+				gap: 30px;
+			}
+			.two-column > div {
+				flex: 1;
+			}
+			.small-text {
+				font-size: 0.75em;
+			}
+			.agenda-item {
+				display: block;
+				padding: 12px 20px;
+				margin: 8px 0;
+				background: linear-gradient(135deg, #FFF8DC 0%, #FAEBD7 100%);
+				border-left: 4px solid var(--warm-orange);
+				border-radius: 8px;
+				text-decoration: none;
+				color: var(--warm-brown);
+				font-weight: 600;
+				transition: all 0.3s ease;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+			}
+			.agenda-item:hover {
+				background: linear-gradient(135deg, #FFE4B5 0%, #FFDAB9 100%);
+				border-left-width: 6px;
+				transform: translateX(5px);
+				box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+			}
+			.agenda-item::before {
+				content: "▶ ";
+				color: var(--warm-orange);
+				margin-right: 8px;
+			}
+			.reveal strong {
+				color: var(--warm-red);
+			}
+		</style>
+	</head>
+	<body>
+		<img src="RiskSpan Logo/Riskspan logo.png" class="logo-top-left" alt="RiskSpan Logo">
+		<div class="footer-info">RiskSpan AI Agent Control Plane & Governance | March 2026</div>
+
+		<div class="reveal">
+			<div class="slides">
+				<!-- Slide 1: Title -->
+				<section>
+					<h1>AI Agent Control Plane & Governance Framework</h1>
+					<p>Providing <span class="highlight">Accountability</span> and <span class="highlight">Assurance</span></p>
+					<div style="margin-top: 50px; font-size: 0.8em;">
+						Internal Strategy Deployment<br>
+						RiskSpan Consulting
+					</div>
+				</section>
+
+				<!-- Slide 2: Agenda -->
+				<section>
+					<h2>Agenda</h2>
+					<div style="text-align: left; max-width: 800px; margin: 0 auto;">
+						<a href="#/2" class="agenda-item">The Agent Control Plane</a>
+						<a href="#/3" class="agenda-item">Industry-Standard Alignments</a>
+						<a href="#/4" class="agenda-item">Four Core Rules & Governance</a>
+						<a href="#/6" class="agenda-item">RS Verify & Monitoring</a>
+						<a href="#/7" class="agenda-item">Regulatory Compliance Framework</a>
+						<a href="#/8" class="agenda-item">AI Model Validation Process</a>
+						<a href="#/9" class="agenda-item">Automated Workflows</a>
+						<a href="#/12" class="agenda-item">Client Value Proposition</a>
+						<a href="#/13" class="agenda-item">Current Status & Next Steps</a>
+					</div>
+				</section>
+
+				<!-- Slide 3: The Command Hub - Infrastructure -->
+				<section>
+					<h2>🏛️ The Agent Control Plane</h2>
+					<p>The "Command Hub" for all AI agents</p>
+					<div class="two-column">
+						<div>
+							<h3 style="font-size: 0.8em;">Infrastructure</h3>
+							<ul>
+								<li>Dedicated repo & managed cloud code instance</li>
+								<li>Enterprise IDs for granular tracking</li>
+								<li>Canonical file-folder system</li>
+								<li>Unified governance & telemetry</li>
+							</ul>
+						</div>
+						<div>
+							<h3 style="font-size: 0.8em;">Technical Capabilities</h3>
+							<ul>
+								<li>Complete audit logs & data lineage</li>
+								<li>Model drift monitoring & alerts</li>
+								<li>Integration with Microsoft Purview</li>
+								<li>Observability Agent for transparency</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- Slide 4: Industry Alignments -->
+				<section>
+					<h2>🔧 Industry-Standard Alignments</h2>
+					<p class="small-text">Our Control Plane leverages best-in-class technologies</p>
+					<ul>
+						<li><strong>AWS Bedrock Guardrails:</strong> Real-time PII masking & content filtering</li>
+						<li><strong>Microsoft Purview:</strong> Automated data labeling & classification</li>
+						<li><strong>Google/Anthropic Constitutional AI:</strong> Ethical policy boundaries</li>
+						<li><strong>Databricks Unity Catalog:</strong> Centralized data lineage tracking</li>
+					</ul>
+				</section>
+
+				<!-- Slide 5: Four Core Rules -->
+				<section>
+					<h2>⚖️ The Four Core Rules</h2>
+					<p class="small-text">Every agent must comply before production</p>
+					<ol>
+						<li><strong>Infrastructure:</strong> Enterprise-level instances, managed repo, persisted telemetry</li>
+						<li><strong>Governance:</strong> RBAC, guardrails, HITL for high-risk actions, documented sign-off</li>
+						<li><strong>Improvement:</strong> Regression testing, JIRA integration, monthly RS Verify reviews</li>
+						<li><strong>Digital Reputation:</strong> 30-day LLM audits with 21-question rubric</li>
+					</ol>
+				</section>
+
+				<!-- Slide 6: Governance & Guardrails -->
+				<section>
+					<h2>🛡️ Governance & Guardrails</h2>
+					<ul>
+						<li><strong>RBAC:</strong> Explicit role-based access for all agents</li>
+						<li><strong>Real-time PII Masking:</strong> Before data reaches third-party LLMs</li>
+						<li><strong>Constitutional AI:</strong> Hard-coded policy layer for ethical boundaries</li>
+						<li><strong>HITL:</strong> Mandatory Human-in-the-Loop for high-risk financial actions</li>
+						<li><strong>Audit Trails:</strong> Comprehensive logs for every prompt, reasoning step, and action</li>
+					</ul>
+				</section>
+
+				<!-- Slide 7: RS Verify -->
+				<section>
+					<h2>📊 Monitoring & RS Verify</h2>
+					<p class="small-text">Monthly executive & technical reporting</p>
+					<div class="two-column">
+						<div>
+							<h3 style="font-size: 0.75em;">Technical Monitoring</h3>
+							<ul style="font-size: 0.8em;">
+								<li>Infrastructure performance & optimization</li>
+								<li>Model drift analysis</li>
+								<li>Token usage & cost tracking</li>
+								<li>Guardrail violations & alerts</li>
+							</ul>
+						</div>
+						<div>
+							<h3 style="font-size: 0.75em;">Digital Presence Audit</h3>
+							<ul style="font-size: 0.8em;">
+								<li>30-day recurring audit</li>
+								<li>Top 5 LLMs tested (ChatGPT, Claude, Gemini, Llama, +)</li>
+								<li>21 standardized questions</li>
+								<li>Graded A/B/C/D for reputation tracking</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- Slide 8: Regulatory Compliance -->
+				<section>
+					<h2>🏛️ Regulatory Compliance Framework</h2>
+					<p class="small-text">Aligned with global banking standards</p>
+					<ul>
+						<li><strong>SR 11-7 (Fed/OCC):</strong> Model Risk Management "gold standard"
+							<ul style="font-size: 0.75em;">
+								<li>Three pillars: Development, Independent Validation, Governance</li>
+							</ul>
+						</li>
+						<li><strong>CFPB - AI Explainability:</strong> Adverse action transparency
+							<ul style="font-size: 0.75em;">
+								<li>"Too complex to explain" is NOT a valid defense</li>
+							</ul>
+						</li>
+						<li><strong>Third-Party AI Risk:</strong> Vendor due diligence & audit rights</li>
+					</ul>
+				</section>
+
+				<!-- Slide 9: Validation Process -->
+				<section>
+					<h2>✅ AI Model Validation Checklist</h2>
+					<p class="small-text">Four-phase validation based on NIST AI RMF & SR 11-7</p>
+					<ol>
+						<li><strong>Conceptual Soundness:</strong> Clear objectives, appropriate logic, documented data</li>
+						<li><strong>Performance Testing:</strong> Out-of-sample accuracy, stress testing, failure modes</li>
+						<li><strong>Fairness & Anti-Bias:</strong> Disparate impact analysis, proxy variable checks</li>
+						<li><strong>Operational Controls:</strong> HITL processes, drift alerts, board approval</li>
+					</ol>
+				</section>
+
+				<!-- Slide 10: Automated Workflows -->
+				<section>
+					<h2>🔄 Automated Workflows</h2>
+					<div class="two-column">
+						<div>
+							<h3 style="font-size: 0.75em;">Current Skills</h3>
+							<ul style="font-size: 0.8em;">
+								<li><strong>Pre-Discovery:</strong> Market research & agenda scripts</li>
+								<li><strong>Post-Meeting Analysis:</strong> Transcript audit, follow-ups, strategic feedback</li>
+								<li><strong>JIRA Loop:</strong> Automated bug tracking & improvement tickets</li>
+							</ul>
+						</div>
+						<div>
+							<h3 style="font-size: 0.75em;">Planned</h3>
+							<ul style="font-size: 0.8em;">
+								<li><strong>Regulatory Agent:</strong> Monitor MAS, FSS, EU, US regulators</li>
+								<li><strong>Weekly Pulse:</strong> Synthesize updates & compliance briefs</li>
+								<li><strong>Policy Updates:</strong> Auto-recommend rule changes</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- Slide 11: Post-Meeting Workflow Detail -->
+				<section>
+					<h2>📋 Post-Meeting Analysis Workflow</h2>
+					<p class="small-text">Three-phase automated process</p>
+					<ol>
+						<li><strong>Data Ingestion & Synthesis</strong>
+							<ul style="font-size: 0.75em;">
+								<li>Extract themes, key decisions, implicit client needs</li>
+							</ul>
+						</li>
+						<li><strong>Compliance & Policy Analysis</strong>
+							<ul style="font-size: 0.75em;">
+								<li>Audit against internal governance policies, flag violations</li>
+							</ul>
+						</li>
+						<li><strong>Actionable Output Generation</strong>
+							<ul style="font-size: 0.75em;">
+								<li>Follow-up emails, JIRA tickets, strategic improvement suggestions</li>
+							</ul>
+						</li>
+					</ol>
+				</section>
+
+				<!-- Slide 12: Team -->
+				<section>
+					<h2>👥 Team & Collaboration</h2>
+					<div style="display: flex; justify-content: space-around; text-align: left; font-size: 0.75em;">
+						<div>
+							<p><strong>Dan Kim & Pat</strong><br>Strategic Oversight & Infrastructure</p>
+							<p><strong>Jason</strong><br>Strategy & Observability Lead</p>
+							<p><strong>Honghua & Jungmo</strong><br>Technical Implementation</p>
+						</div>
+						<div>
+							<p><strong>AI Committee</strong></p>
+							<ul style="font-size: 0.9em;">
+								<li>Agent approval & sign-off</li>
+								<li>Monthly policy review</li>
+								<li>Use case sharing</li>
+								<li>Risk management oversight</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- Slide 13: Client Value Proposition -->
+				<section>
+					<h2>🎯 Client Value Proposition</h2>
+					<p class="small-text">Six key differentiators</p>
+					<ol style="font-size: 0.85em;">
+						<li><strong>Transparency:</strong> Every action logged, auditable, and reversible</li>
+						<li><strong>Enterprise-Grade Governance:</strong> Multi-layer guardrails with Constitutional AI</li>
+						<li><strong>Regulatory Alignment:</strong> Compliant with SR 11-7, CFPB, and global standards</li>
+						<li><strong>Continuous Monitoring:</strong> Monthly RS Verify + 30-day digital audits</li>
+						<li><strong>End-to-End Automation:</strong> Workflow automation with human oversight</li>
+						<li><strong>Institutional Controls:</strong> Individual IDs, RBAC, complete data lineage</li>
+					</ol>
+				</section>
+
+				<!-- Slide 14: Status -->
+				<section>
+					<h2>🚀 Current Status</h2>
+					<ul>
+						<li><strong>Phase:</strong> Infrastructure Setup (Control Plane Development)</li>
+						<li><strong>Current Focus:</strong>
+							<ul style="font-size: 0.85em;">
+								<li>Building out Agent Control Plane infrastructure</li>
+								<li>Finalizing JIRA integration loop</li>
+								<li>Expanding audit to include Grok and Mistral</li>
+								<li>Establishing Observability Agent protocols</li>
+								<li>Defining RBAC schema for enterprise IDs</li>
+							</ul>
+						</li>
+					</ul>
+					<p class="highlight" style="margin-top: 30px; font-size: 1.2em;">Innovation Window: OPEN</p>
+				</section>
+
+				<!-- Slide 15: Call to Action -->
+				<section>
+					<h2>Next Steps</h2>
+					<ul>
+						<li>AI Committee kick-off meeting & charter finalization</li>
+						<li>Complete Control Plane RBAC schema</li>
+						<li>Launch Observability Agent beta</li>
+						<li>Finalize 21-question Digital Presence rubric</li>
+						<li>Establish first RS Verify monthly report cycle</li>
+					</ul>
+					<div style="margin-top: 50px; font-size: 0.9em; color: var(--riskspan-blue);">
+						<strong>Questions & Discussion</strong>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				center: true,
+				transition: 'slide',
+				slideNumber: true,
+				progress: true
+			});
+		</script>
+	</body>
+</html>
